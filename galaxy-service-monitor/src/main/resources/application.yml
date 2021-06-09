@@ -1,0 +1,44 @@
+# spring
+spring:
+  output:
+    ansi:
+      enabled: always
+  application:
+    name: "prometheus-starter"
+
+# logging
+logging:
+  level: warn
+  pattern:
+    console: "%clr(%d{yyyy-MM-dd HH:mm:ss.SSS}){faint} %clr(%5p) %clr(---){faint} %clr(%-80.80logger{79}){cyan} %clr(:){faint} %m%n"
+  file:
+    clean-history-on-start: true
+    name: "src/main/resources/log/monitor.log"
+
+# web
+server:
+  port: 8060
+
+# prometheus
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,env,prometheus,metrics,httptrace,threaddump,headdump,springmetrics
+      base-path: "src/main/resources/log/metrics.log"
+  endpoint:
+    metrics:
+      enabled: true
+    prometheus:
+      enabled: true
+  metrics:
+    export:
+      prometheus:
+        enabled: true
+        step: 1m
+        descriptions: true
+    web:
+      server:
+        auto-time-requests: true
+    tags:
+      application: "%{spring.application.name}"
