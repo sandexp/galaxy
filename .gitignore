@@ -18,6 +18,8 @@
 /target/*
 /build
 /*/build
+/**/*/resources/log/*
+
 
 # IDEA
 *.iml
@@ -25,6 +27,7 @@
 settings.xml
 # .fullclasspath.txt
 .mvn/
+
 
 # git
 /.git/*
